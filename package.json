@@ -1,6 +1,6 @@
 {
     "name": "i18n-t",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Very easy to use and dumb i18n utility",
     "main": "index.js",
     "dependencies": {
