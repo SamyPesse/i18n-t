@@ -2,7 +2,6 @@ var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 
-
 function I18n(opts) {
     if (!(this instanceof I18n)) return new I18n(opts);
 
@@ -12,7 +11,7 @@ function I18n(opts) {
 
     this._locales = {};
 
-    _.bindAll(this);
+    _.bindAll(this, _.functionsIn(this));
 }
 
 // Extend locales
@@ -51,7 +50,7 @@ I18n.prototype.load = function(root) {
             ];
         })
         .compact()
-        .object()
+        .fromPairs()
         .value();
 
     this.set(locales);
@@ -72,7 +71,7 @@ I18n.prototype.resolve = function(lang, defaultLocale) {
             return lang.score > 0;
         })
         .sortBy('score')
-        .pluck('locale')
+        .map('locale')
         .last()
         .value() || defaultLocale;
 };
