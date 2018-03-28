@@ -1,5 +1,8 @@
 {
     "HELLO": "Hello {{name}}",
     "WORLD": "World",
-    "CATS": "{{0}} cats"
+    "CATS": "{{0}} cats",
+    "CHILD": {
+        "DEMO": "Hello demo"
+    }
 }

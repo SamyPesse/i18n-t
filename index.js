@@ -87,7 +87,7 @@ I18n.prototype.t = function(lang, phrase) {
         args = args.slice(0, -1);
     }
 
-    var tpl = locale[phrase];
+    var tpl = _.get(locale, phrase);
 
     if (_.isUndefined(tpl)) {
         tpl = this.get(this.opts.defaultLocale)[phrase];
