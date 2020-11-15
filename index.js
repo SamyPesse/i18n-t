@@ -117,7 +117,7 @@ function interpolate(tpl, args, kwargs) {
     kwargs = _.extend(kwargs, args);
 
     return _.reduce(kwargs, function(value, val, key) {
-        var re = /{{([\s\S]*?[^\$])}}/g;
+        var re = new RegExp(`{{[\\s\\S]?${key}[^\\$]?}}`, 'g');
         return value.replace(re, val);
     }, tpl);
 }
