@@ -55,6 +55,10 @@ describe('I18n', function() {
             assert.equal(i18n.t('en', 'CATS', 10), '10 cats');
         });
 
+        it('should translate with depth', function() {
+            assert.equal(i18n.t('en', 'CHILD.DEMO'), 'Hello demo');
+        });
+
         it('should default non-existing locales to en', function() {
             assert.equal(i18n.t('zh', 'WORLD'), 'World');
         });

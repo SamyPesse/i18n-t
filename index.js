@@ -39,7 +39,7 @@ I18n.prototype.load = function(root) {
     var locales = _.chain(fs.readdirSync(root))
         .map(function(filename) {
             var ext = path.extname(filename);
-            if (ext != '.json' && ext != '.js') return;
+            if (ext != '.json') return;
 
             var lang = path.basename(filename, ext);
             var filepath = path.resolve(root, filename);
@@ -87,7 +87,7 @@ I18n.prototype.t = function(lang, phrase) {
         args = args.slice(0, -1);
     }
 
-    var tpl = locale[phrase];
+    var tpl = _.get(locale, phrase);
 
     if (_.isUndefined(tpl)) {
         tpl = this.get(this.opts.defaultLocale)[phrase];
@@ -117,7 +117,7 @@ function interpolate(tpl, args, kwargs) {
     kwargs = _.extend(kwargs, args);
 
     return _.reduce(kwargs, function(value, val, key) {
-        var re = /{{([\s\S]*?[^\$])}}/g;
+        var re = new RegExp(`{{[\\s\\S]?${key}[^\\$]?}}`, 'g');
         return value.replace(re, val);
     }, tpl);
 }
