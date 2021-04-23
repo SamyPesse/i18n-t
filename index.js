@@ -39,7 +39,7 @@ I18n.prototype.load = function(root) {
     var locales = _.chain(fs.readdirSync(root))
         .map(function(filename) {
             var ext = path.extname(filename);
-            if (ext != '.json' && ext != '.js') return;
+            if (ext != '.json') return;
 
             var lang = path.basename(filename, ext);
             var filepath = path.resolve(root, filename);
